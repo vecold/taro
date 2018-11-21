@@ -1,0 +1,5 @@
+<block>
+    <view class="index">
+        <text>Hello world!</text>
+    </view>
+</block>
