@@ -1,5 +1,5 @@
 <block>
     <view class="index">
-        <text>Hello world!</text>
+        <hello-c name="hello_world" __triggerObserer="{{ _triggerObserer }}"></hello-c>
     </view>
 </block>

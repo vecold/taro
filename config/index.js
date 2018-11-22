@@ -12,6 +12,12 @@ const config = {
   plugins: {
     babel: {
       sourceMap: true,
+      uglify:{
+        enable:true
+      },
+      csso:{
+        enable:true
+      },
       presets: [
         'env'
       ],

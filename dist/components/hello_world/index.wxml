@@ -1,0 +1,5 @@
+<block>
+    <view>
+        <text>{{name}}</text>
+    </view>
+</block>

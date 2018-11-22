@@ -23,7 +23,7 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-
+  globalData:{}
   componentDidMount () {}
 
   componentDidShow () {}
