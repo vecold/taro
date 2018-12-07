@@ -1,0 +1,21 @@
+.shadow{
+    box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+}
+.sell-searchItem {
+    border: 1px solid #10AEFF;
+    height: 52rpx;
+    font-size: 28rpx;
+    background: #FFFFFF;
+    display: flex;
+    align-items: center;
+    color: #10AEFF;
+    margin-left: 23rpx;
+  }
+  .sell-searchItem::after {
+    border: 0;
+  }
+  .sell-searchItem_hover {
+    color: #fff;
+    background: #10AEFF;
+    border: 1px solid #fff;
+  }

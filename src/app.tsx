@@ -14,7 +14,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
-      'pages/index/index'
+      'pages/adminItem/adminItem'
     ],
     window: {
       backgroundTextStyle: 'light',

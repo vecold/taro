@@ -1,5 +1,7 @@
 "use strict";
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _domain = require("../../env/domain.js");
 
 var _index = require("../../npm/@tarojs/taro-weapp/index.js");
@@ -19,16 +21,48 @@ function api(_ref) {
       _ref$callback = _ref.callback,
       callback = _ref$callback === undefined ? undefined : _ref$callback;
 
+  var datatype = method == 'GET' ? 'application/json' : 'application/x-www-form-urlencoded';
+  var rd_session = _index2.default.getStorageSync('rd_session');
+  params.rd_session = rd_session;
   _index2.default.request({
     url: host + url,
     method: method,
     data: params,
+    header: {
+      'content-type': datatype
+    },
     success: function success(rsp) {
-      callback(rsp);
+      console.log(rsp);
+      if (rsp.data.code && rsp.data.code != 200) {
+        _index2.default.showToast({ title: rsp.data.value, icon: 'none' });
+      } else {
+        callback(rsp);
+      }
     },
     fail: function fail(error) {
       console.error(error);
     }
   });
 }
+
+function IsEmpty(key) {
+  if (typeof key === 'string') {
+    key = key.replace(/(^\s*)|(\s*$)/g, '');
+    if (key == '' || key == null || key == 'null' || key == undefined || key == 'undefined') {
+      return true;
+    } else {
+      return false;
+    }
+  } else if (typeof key === 'undefined') {
+    return true;
+  } else if ((typeof key === "undefined" ? "undefined" : _typeof(key)) == 'object') {
+    for (var i in key) {
+      return false;
+    }
+    return true;
+  } else if (typeof key == 'boolean') {
+    return false;
+  }
+};
 module.exports.api = api;
+module.exports.IsEmpty = IsEmpty;

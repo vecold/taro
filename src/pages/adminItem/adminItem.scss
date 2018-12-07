@@ -1,0 +1,36 @@
+.at-tabs__header{
+    background: linear-gradient(#10AEFF,#19C1FF);
+}
+.at-tabs__item{
+    color: white !important;
+}
+.at-tabs__item--active {
+    color:white !important;
+}
+.at-tabs__item::after {    
+    background-color: #fff !important;
+}
+.at-tabs__item--active {
+    color: #fff !important; 
+}
+page{
+    height: 100%;
+}
+// .at-tabs {
+//     display: flex;
+//     flex: 1;
+//     flex-direction: column;
+// }
+// .at-tabs__body{
+//     height: 100% !important;
+// }
+// at-tabs-pane{
+//     height: 100%;
+// }
+// #Atpans{
+//     height: 100%;
+// }
+// .at-tabs__header{
+//     height: 100px !important;
+// }
+    
