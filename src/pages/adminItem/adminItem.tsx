@@ -36,8 +36,10 @@ export default class Index extends Component {
 
   componentWillMount () { 
     console.log(this.$router.params) // 输出 { id: 2, type: 'test' }
-    this.state.shop_id = this.$router.params.shop_id;
-    this.shop_id = this.$router.params.shop_id;
+    // this.state.shop_id = this.$router.params.shop_id;
+    // this.shop_id = this.$router.params.shop_id;
+    this.state.shop_id = '56182';
+    this.shop_id = '56182';
     Taro.getSystemInfo({success:(rsp)=>{
       this.setState({height:rsp.screenHeight});
     }})
@@ -47,6 +49,9 @@ export default class Index extends Component {
     console.log(e)
     let self = this;
     let data = e.target.dataset;
+    // wx.reportAnalytics('productmanage_share_click', {
+            //     dobean: 0,
+            //   });
     return {
       title: '【' + self.state.shopInfo.shop_name + '】 ' +data.title,
       path: '/pages/productDetails/productDetails?sence=' + data.id,

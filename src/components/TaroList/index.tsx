@@ -31,9 +31,16 @@ export default class TaroList extends Component {
   
     componentDidMount () { 
         const { current,index } = this.props;
-        // if(current==index){
-        //     this.getList(0);
-        // }
+        console.log(index)
+        if(index==1){
+            // wx.reportAnalytics('productmanage_nostock_show', {
+            //     dobean: 0,
+            //   });
+        }else if(index==2){
+            // wx.reportAnalytics('productmanage_off_show', {
+            //     dobean: 0,
+            //   });
+        }
     }
 
     componentWillReceiveProps(nextProps){
@@ -65,14 +72,21 @@ export default class TaroList extends Component {
         if(lowerWord=='没有更多商品了～'&&page!=0){
             return;
         }
+        if(key=='search'){
+            // wx.reportAnalytics('productmanage_search_click', {
+            //     dobean: 0,
+            //   });
+        }
         let self = this;
         let newlowerWord = lowerWord;
+        Taro.showLoading({title:'加载中'});
         getAdimList({
             page:page,
             type:type,
             shopId:shopId,
             keyword:keyword,
             callback:(rsp)=>{
+                Taro.hideLoading();
                 if(page==0){
                     newlowerWord = '加载更多';
                     self.state.datalist = rsp.data;
@@ -116,7 +130,7 @@ export default class TaroList extends Component {
                 <Button 
                     hoverClass='sell-searchItem_hover' 
                     className='sell-searchItem'
-                    onClick={this.getList.bind(this,0,keyword)}
+                    onClick={this.getList.bind(this,0,'search')}
                 >搜索</Button>
                 <Button 
                     hoverClass='sell-searchItem_hover' 

@@ -12,12 +12,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function api(_ref) {
   var _ref$host = _ref.host,
-      host = _ref$host === undefined ? _domain.domain.devhost : _ref$host,
+      host = _ref$host === undefined ? _domain.domain.zhost : _ref$host,
       url = _ref.url,
       _ref$params = _ref.params,
       params = _ref$params === undefined ? {} : _ref$params,
       _ref$method = _ref.method,
-      method = _ref$method === undefined ? 'GET' : _ref$method,
+      method = _ref$method === undefined ? 'POST' : _ref$method,
       _ref$callback = _ref.callback,
       callback = _ref$callback === undefined ? undefined : _ref$callback;
 

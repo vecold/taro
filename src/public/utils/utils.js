@@ -1,6 +1,6 @@
 import {domain} from "../../env/domain.js";
 import Taro from "@tarojs/taro";
-function api({host=domain.devhost,url,params={},method='GET',callback=undefined}){
+function api({host=domain.zhost,url,params={},method='POST',callback=undefined}){
     let datatype = method == 'GET' ? 'application/json' : 'application/x-www-form-urlencoded';
     const rd_session = Taro.getStorageSync('rd_session');
     params.rd_session = rd_session;

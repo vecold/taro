@@ -13,7 +13,9 @@ export default class ItemCard extends Component {
           version:false,//更多信息
           modalV:false,//同步modal
           is_pic:0,//是否跟新图片
-          is_num:0//是否更新库存
+          is_num:0,//是否更新库存
+          height:700,
+          width:750,
         }
       }
     /**
@@ -27,23 +29,32 @@ export default class ItemCard extends Component {
       
     }
     componentDidMount () { 
+      Taro.getSystemInfo({success:(rsp)=>{
+        this.setState({height:rsp.screenHeight});
+      }})
     }
 
     componentWillReceiveProps(nextProps){
-
+        if(!IsEmpty(nextProps.data)){
+          this.setState({data:nextProps.data});
+        }
     }
     /**同步商品 */
     syncItems=()=>{
-      Taro.showLoading({
-        title:'同步中',
-        mask:true,
-      });
+       // wx.reportAnalytics('productmanage_sync_click', {
+            //     dobean: 0,
+            //   });
       let self = this;
       const { is_pic,is_num,data } = this.state;
       this.setState({modalV:false});
       if(is_pic==0&&is_num==0){
         return;
       }
+     
+      Taro.showLoading({
+        title:'同步中',
+        mask:true,
+      });
       /**修改当前data */
       syncItem({
         num_iid:data.num_iid,
@@ -73,20 +84,38 @@ export default class ItemCard extends Component {
     }
 
     showVer=()=>{
+      // wx.reportAnalytics('productmanage_productcard_click', {
+            //     dobean: 0,
+            //   });
       this.setState({version:!this.state.version});
     }
     
     showModal=()=>{
-      this.setState({modalV:!this.state.modalV});
+      let self = this;
+      Taro.getSystemInfo({success:(rsp)=>{
+        console.log(rsp.platform)
+        if(rsp.platform=='android'||rsp.platform=='devtools'){
+          self.setState({modalV:!this.state.modalV});
+        }else{
+          self.state.is_num = 1;
+          self.syncItems();
+        }
+      }})
     }
 
     gotoDetail=(id)=>{
+      // wx.reportAnalytics('productmanage_check_click', {
+            //     dobean: 0,
+            //   });
       Taro.navigateTo({
         url: '/pages/productDetails/productDetails?sence='+id
       })
     }
 
     modifyInfo=(id)=>{
+    // wx.reportAnalytics('productmanage_edit_click', {
+            //     dobean: 0,
+            //   });
       Taro.navigateTo({
         url: '/pages/modifyInfo/modifyInfo?id='+id
       })
@@ -129,7 +158,7 @@ export default class ItemCard extends Component {
       }
       return (
         <View style={styles.cardView} className='card_view'>
-          <AtModal closeOnClickOverlay={false} isOpened={modalV}>
+          <AtModal isOpened={modalV}>
             <AtModalHeader>提示</AtModalHeader>
             <AtModalContent>
               <View style={{display:'flex',flex:1,flexDirection:'column'}}>
@@ -156,7 +185,7 @@ export default class ItemCard extends Component {
               <Button onClick={this.showModal.bind(this)}>取消</Button> 
               <Button onClick={this.syncItems.bind(this)} style={{color:'#02BB00'}}>确定同步</Button> </AtModalAction>
           </AtModal>
-          <View style={{display:'flex',flex:1,flexDirection:'row',padding:'20rpx'}}>
+          <View style={{display:'flex',flex:1,flexDirection:'row',padding:'20rpx'}} onClick={this.showVer.bind(this)}>
             <Image src={data.image_path} style={styles.imageView}/>
             <View style={{display:'flex',flex:1,flexDirection:'column',marginLeft:'20rpx'}}>
               <Text style={{width:'500rpx'}} className='ecl_text'>{data.name}</Text>
@@ -169,7 +198,7 @@ export default class ItemCard extends Component {
                 <Text style={{color:'red'}}>{price}</Text>
                 <Text className='main_text'>元</Text>
                 <View style={{flex:1}}/>
-                <Image style={{height:'18rpx',width:'24rpx'}} onClick={this.showVer.bind(this)} src={version?pic_url+'pullup.png':pic_url+'pulldown.png'}/>
+                <Image style={{height:'18rpx',width:'24rpx'}} src={version?pic_url+'pullup.png':pic_url+'pulldown.png'}/>
               </View>
             </View>
           </View>
