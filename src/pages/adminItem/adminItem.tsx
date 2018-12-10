@@ -4,15 +4,19 @@ import { AtTabs,AtTabsPane } from 'taro-ui';
 import { getShops } from  '../../biz/adminItem.js';
 import TaroList from '../../components/TaroList';
 import './adminItem.scss'
-
+/**
+ * taro 页面 
+ * @author lzy
+ * 商品管理列表页面 
+ * */
 export default class Index extends Component {
   constructor () {
     super(...arguments)
     this.state = {
       current: 0,
       height:700,
-      shopInfo:{},
-      shop_id:'',
+      shopInfo:{}, //店铺信息
+      shop_id:'', //店铺id
     }
     this.shop_id = '';
   }
@@ -36,10 +40,10 @@ export default class Index extends Component {
 
   componentWillMount () { 
     console.log(this.$router.params) // 输出 { id: 2, type: 'test' }
-    // this.state.shop_id = this.$router.params.shop_id;
-    // this.shop_id = this.$router.params.shop_id;
-    this.state.shop_id = '56182';
-    this.shop_id = '56182';
+    this.state.shop_id = this.$router.params.shop_id;
+    this.shop_id = this.$router.params.shop_id;
+    // this.state.shop_id = '56182';
+    // this.shop_id = '56182';
     Taro.getSystemInfo({success:(rsp)=>{
       this.setState({height:rsp.screenHeight});
     }})
@@ -64,17 +68,12 @@ export default class Index extends Component {
     getShops({
       shopid:self.shop_id,
       callback:(rsp)=>{
-         self.setState({shopInfo:rsp.data.res[0]});
+         self.setState({shopInfo:rsp.data});
       }
     });
     //获取店铺信息
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
   h1=()=>{
     let ref = Taro.createSelectorQuery().in(this.$scope);
     ref.select("#Atpans").boundingClientRect(rect=>{console.log(rect)}).exec();

@@ -11,20 +11,13 @@ export default class TaroList extends Component {
         this.state = {
           current: 0,
           height:700,
-          datalist:[],
-          page:0,
-          keyword:'',
+          datalist:[], // 数据
+          page:0, //页码
+          keyword:'', //搜索关键词
           lowerWord:'加载更多',
           loading:false,
         }
       }
-    /**
-     * 指定config的类型声明为: Taro.Config
-     *
-     * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-     * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-     * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-     */
     config: Config = {
       
     }
@@ -49,21 +42,22 @@ export default class TaroList extends Component {
             this.getList(0);
         }
     }
-
+    
     onScrollToLower=()=>{
+        //加载更多
         this.state.page++;
         this.getList(this.state.page);
     }
-
+    
     refreshPage=()=>{
+        //刷新当前页
         this.setState({loading:true});
         this.state.page = 0;
         this.getList(this.state.page);
     }
-    /**
-     * 
-     */
+   
     getList=(page,key='default')=>{
+        // 获取列表
         // if(IsEmpty(key)){
         //     return;
         // }

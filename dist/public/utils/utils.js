@@ -10,6 +10,11 @@ var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * @author lzy
+ * taro 公用类方法
+ */
+//api请求 host 域名 url 方法 params 参数 method 请求方式 callback 回调函数
 function api(_ref) {
   var _ref$host = _ref.host,
       host = _ref$host === undefined ? _domain.domain.zhost : _ref$host,

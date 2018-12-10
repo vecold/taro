@@ -1,5 +1,10 @@
 import {domain} from "../../env/domain.js";
 import Taro from "@tarojs/taro";
+/**
+ * @author lzy
+ * taro 公用类方法
+ */
+//api请求 host 域名 url 方法 params 参数 method 请求方式 callback 回调函数
 function api({host=domain.zhost,url,params={},method='POST',callback=undefined}){
     let datatype = method == 'GET' ? 'application/json' : 'application/x-www-form-urlencoded';
     const rd_session = Taro.getStorageSync('rd_session');

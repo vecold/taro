@@ -5,26 +5,24 @@ import { IsEmpty } from '../../public/utils/utils.js';
 import { syncItem } from '../../biz/adminItem.js'
 import './index.scss'
 const pic_url = "https://q.aiyongbao.com/wechat/images/";
+/**
+ * @author lzy
+ * 商品卡片组件
+ * 
+ */
 export default class ItemCard extends Component {
     constructor () {
         super(...arguments)
         this.state = {
-          data:this.props.data,//商品信息
-          version:false,//更多信息
-          modalV:false,//同步modal
-          is_pic:0,//是否跟新图片
-          is_num:0,//是否更新库存
+          data:this.props.data, //商品信息
+          version:false, //更多信息
+          modalV:false, //同步modal
+          is_pic:0, //是否跟新图片
+          is_num:0, //是否更新库存
           height:700,
           width:750,
         }
       }
-    /**
-     * 指定config的类型声明为: Taro.Config
-     *
-     * 由于 typescript 对于 object 类型推导只能推出 Key 的基本类型
-     * 对于像 navigationBarTextStyle: 'black' 这样的推导出的类型是 string
-     * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
-     */
     config: Config = {
       
     }
@@ -39,8 +37,8 @@ export default class ItemCard extends Component {
           this.setState({data:nextProps.data});
         }
     }
-    /**同步商品 */
     syncItems=()=>{
+      //同步商品 
        // wx.reportAnalytics('productmanage_sync_click', {
             //     dobean: 0,
             //   });
@@ -55,7 +53,7 @@ export default class ItemCard extends Component {
         title:'同步中',
         mask:true,
       });
-      /**修改当前data */
+      //修改当前data 
       syncItem({
         num_iid:data.num_iid,
         is_pic:is_pic?1:0,
@@ -82,8 +80,9 @@ export default class ItemCard extends Component {
         }
       });
     }
-
+    
     showVer=()=>{
+      //更多信息 
       // wx.reportAnalytics('productmanage_productcard_click', {
             //     dobean: 0,
             //   });
@@ -91,6 +90,7 @@ export default class ItemCard extends Component {
     }
     
     showModal=()=>{
+      //展现modal 
       let self = this;
       Taro.getSystemInfo({success:(rsp)=>{
         console.log(rsp.platform)
@@ -102,8 +102,9 @@ export default class ItemCard extends Component {
         }
       }})
     }
-
+    
     gotoDetail=(id)=>{
+      //查看商品
       // wx.reportAnalytics('productmanage_check_click', {
             //     dobean: 0,
             //   });
@@ -111,8 +112,9 @@ export default class ItemCard extends Component {
         url: '/pages/productDetails/productDetails?sence='+id
       })
     }
-
+    
     modifyInfo=(id)=>{
+      //修改商品
     // wx.reportAnalytics('productmanage_edit_click', {
             //     dobean: 0,
             //   });
@@ -120,8 +122,9 @@ export default class ItemCard extends Component {
         url: '/pages/modifyInfo/modifyInfo?id='+id
       })
     }
-
+    
     radioChange=(type)=>{
+      //选择同步内容 
       if(type=='pic'){
         this.setState({is_pic:!this.state.is_pic});
       }else{
