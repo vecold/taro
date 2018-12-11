@@ -1,5 +1,0 @@
-{
-  "usingComponents": {
-    "hello-c": "../../components/hello_world/index"
-  }
-}

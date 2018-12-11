@@ -1,5 +1,0 @@
-<block>
-    <view class="index">
-        <hello-c name="hello_world" __triggerObserer="{{ _triggerObserer }}"></hello-c>
-    </view>
-</block>

@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/adminItem/adminItem"
   ],
   "window": {
     "backgroundTextStyle": "light",
