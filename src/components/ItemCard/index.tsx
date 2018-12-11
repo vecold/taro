@@ -1,10 +1,10 @@
-import Taro, { Component, Config } from '@tarojs/taro'
+import Taro, { Component, Config ,Events} from '@tarojs/taro'
 import { View,Image,Text,Button,Radio } from '@tarojs/components'
-import {AtModal,AtModalHeader,AtModalContent,AtModalAction} from 'taro-ui'
 import { IsEmpty } from '../../public/utils/utils.js';
 import { syncItem } from '../../biz/adminItem.js'
 import './index.scss'
 const pic_url = "https://q.aiyongbao.com/wechat/images/";
+const events = new Events();
 /**
  * @author lzy
  * 商品卡片组件
@@ -89,17 +89,25 @@ export default class ItemCard extends Component {
       this.setState({version:!this.state.version});
     }
     
-    showModal=()=>{
+    showModal=(id)=>{
       //展现modal 
       let self = this;
       Taro.getSystemInfo({success:(rsp)=>{
-        console.log(rsp.platform)
-        if(rsp.platform=='android'||rsp.platform=='devtools'){
-          self.setState({modalV:!this.state.modalV});
-        }else{
-          self.state.is_num = 1;
+        console.log(rsp.platform,id);
+        Taro.eventCenter.trigger('showModal',id);
+        Taro.eventCenter.on(`sync${id}`,(arg)=>{
+          Taro.eventCenter.off(`sync${id}`);
+          self.state.is_pic = arg.is_pic;
+          self.state.is_num = arg.is_num;
           self.syncItems();
-        }
+        })
+        
+        // if(rsp.platform=='android'||rsp.platform=='devtools'){
+        //   self.setState({modalV:!this.state.modalV});
+        // }else{
+        //   self.state.is_num = 1;
+        //   self.syncItems();
+        // }
       }})
     }
     
@@ -123,14 +131,7 @@ export default class ItemCard extends Component {
       })
     }
     
-    radioChange=(type)=>{
-      //选择同步内容 
-      if(type=='pic'){
-        this.setState({is_pic:!this.state.is_pic});
-      }else{
-        this.setState({is_num:!this.state.is_num});
-      }
-    }
+    
 
     render () {
       const { type } = this.props;
@@ -161,33 +162,6 @@ export default class ItemCard extends Component {
       }
       return (
         <View style={styles.cardView} className='card_view'>
-          <AtModal isOpened={modalV}>
-            <AtModalHeader>提示</AtModalHeader>
-            <AtModalContent>
-              <View style={{display:'flex',flex:1,flexDirection:'column'}}>
-                <Text style={{color:'#888',fontSize:'30rpx',textAlign:'center'}}>请选取您要同步的商品信息</Text>
-                <View style={{display:'flex',flexDirection:'row',paddingLeft:'30rpx',marginTop:'16rpx',alignItems:'center'}}>
-                  <Radio 
-                    color={'#F76260'}
-                    onClick={this.radioChange.bind(this,'num')}
-                    checked={is_num}
-                  />
-                  <Text style={{color:'#888'}}>商品库存</Text>
-                </View>
-                <View style={{display:'flex',flexDirection:'row',paddingLeft:'30rpx',marginTop:'16rpx',alignItems:'center'}}>
-                  <Radio 
-                    color={'#F76260'}
-                    onClick={this.radioChange.bind(this,'pic')}
-                    checked={is_pic}
-                  />
-                  <Text style={{color:'#888'}}>商品详情页</Text>
-                </View>
-              </View>
-            </AtModalContent>
-            <AtModalAction> 
-              <Button onClick={this.showModal.bind(this)}>取消</Button> 
-              <Button onClick={this.syncItems.bind(this)} style={{color:'#02BB00'}}>确定同步</Button> </AtModalAction>
-          </AtModal>
           <View style={{display:'flex',flex:1,flexDirection:'row',padding:'20rpx'}} onClick={this.showVer.bind(this)}>
             <Image src={data.image_path} style={styles.imageView}/>
             <View style={{display:'flex',flex:1,flexDirection:'column',marginLeft:'20rpx'}}>
@@ -214,7 +188,7 @@ export default class ItemCard extends Component {
               <Button
                 hoverClass='sell-searchItem_hover' 
                 className='sell-searchItem'
-                onClick={this.showModal.bind(this)}
+                onClick={this.showModal.bind(this,data.id)}
               >同步信息</Button>
               <Button
                 hoverClass='sell-searchItem_hover' 

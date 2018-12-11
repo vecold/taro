@@ -28,7 +28,8 @@ function api(_ref) {
 
   var datatype = method == 'GET' ? 'application/json' : 'application/x-www-form-urlencoded';
   var rd_session = _index2.default.getStorageSync('rd_session');
-  params.rd_session = rd_session;
+  // params.rd_session = rd_session;
+  params.rd_session = 'EKAs5NlS_Hs6UXbg0mXWtA  ';
   _index2.default.request({
     url: host + url,
     method: method,

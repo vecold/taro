@@ -1,6 +1,6 @@
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View,ScrollView } from '@tarojs/components'
-import { AtTabs,AtTabsPane } from 'taro-ui';
+import { View,ScrollView,Text,Button,Radio } from '@tarojs/components';
+import {AtModal,AtModalHeader,AtModalContent,AtModalAction,AtTabs,AtTabsPane} from 'taro-ui'
 import { getShops } from  '../../biz/adminItem.js';
 import TaroList from '../../components/TaroList';
 import './adminItem.scss'
@@ -17,8 +17,13 @@ export default class Index extends Component {
       height:700,
       shopInfo:{}, //店铺信息
       shop_id:'', //店铺id
+      modalV:false,
+      is_pic:0,
+      is_num:0,
+      currentId:''
     }
     this.shop_id = '';
+    this.showModal = this.showModal.bind(this);
   }
   handleClick (value) {
     this.setState({
@@ -39,6 +44,12 @@ export default class Index extends Component {
   }
 
   componentWillMount () { 
+    let self = this;
+    //wx.hideShareMenu();
+    Taro.eventCenter.on('showModal',(arg)=>{
+      console.log(arg);
+      self.showModal(arg);
+    });
     console.log(this.$router.params) // 输出 { id: 2, type: 'test' }
     this.state.shop_id = this.$router.params.shop_id;
     this.shop_id = this.$router.params.shop_id;
@@ -74,16 +85,65 @@ export default class Index extends Component {
     //获取店铺信息
   }
 
+  showModal=(id)=>{
+    this.setState({modalV:true,currentId:id});
+  }
+
+  hideModal=(type)=>{
+    const { currentId,is_num,is_pic } = this.state;
+    if(type==1){
+      console.log('sync')
+      Taro.eventCenter.trigger(`sync${currentId}`,{is_num:is_num,is_pic:is_pic});
+    }
+    this.setState({modalV:false,is_num:0,is_pic:0});
+  }
+
+  radioChange=(type)=>{
+    //选择同步内容 
+    if(type=='pic'){
+      this.setState({is_pic:!this.state.is_pic});
+    }else{
+      this.setState({is_num:!this.state.is_num});
+    }
+  }
+
   h1=()=>{
     let ref = Taro.createSelectorQuery().in(this.$scope);
     ref.select("#Atpans").boundingClientRect(rect=>{console.log(rect)}).exec();
   }
   render () {
     const tabList = [{ title: '上架中',type:'push' }, { title: '缺货中',type:'lost' }, { title: '下架中',type:'defe' }];
-    const {current,height} = this.state;
+    const {current,height,modalV,is_num,is_pic} = this.state;
     let max_height = height - 110;
     return (
       <View style={{height:'100%',backgroundColor:"#f5f5f5"}}>
+        <AtModal isOpened={modalV}>
+            <AtModalHeader>提示</AtModalHeader>
+            <AtModalContent>
+              <View style={{display:'flex',flex:1,flexDirection:'column'}}>
+                <Text style={{color:'#888',fontSize:'30rpx',textAlign:'center'}}>请选取您要同步的商品信息</Text>
+                <View style={{display:'flex',flexDirection:'row',paddingLeft:'30rpx',marginTop:'16rpx',alignItems:'center'}}>
+                  <Radio 
+                    color={'#F76260'}
+                    onClick={this.radioChange.bind(this,'num')}
+                    checked={is_num}
+                  />
+                  <Text style={{color:'#888'}}>商品库存</Text>
+                </View>
+                <View style={{display:'flex',flexDirection:'row',paddingLeft:'30rpx',marginTop:'16rpx',alignItems:'center'}}>
+                  <Radio 
+                    color={'#F76260'}
+                    onClick={this.radioChange.bind(this,'pic')}
+                    checked={is_pic}
+                  />
+                  <Text style={{color:'#888'}}>商品详情页</Text>
+                </View>
+              </View>
+            </AtModalContent>
+            <AtModalAction> 
+              <Button onClick={this.hideModal.bind(this,0)}>取消</Button> 
+              <Button onClick={this.hideModal.bind(this,1)} style={{color:'#02BB00'}}>确定同步</Button> </AtModalAction>
+          </AtModal>
         <AtTabs  current={current} tabList={tabList} onClick={this.handleClick.bind(this)}>
         {tabList.map((item,index)=>{
           return (

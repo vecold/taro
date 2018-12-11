@@ -24,7 +24,6 @@ export default class TaroList extends Component {
   
     componentDidMount () { 
         const { current,index } = this.props;
-        console.log(index)
         if(index==1){
             // wx.reportAnalytics('productmanage_nostock_show', {
             //     dobean: 0,
@@ -102,7 +101,7 @@ export default class TaroList extends Component {
     }
 
     render () {
-      const { name,max_height,type } = this.props;
+      const { name,max_height,type,showModal } = this.props;
       const { keyword,datalist,lowerWord,loading } = this.state;
       return (
         <ScrollView 
@@ -140,6 +139,7 @@ export default class TaroList extends Component {
                         data={item}
                         key={key}
                         type={type}
+                        showModal = {showModal}
                     />
                 );
             })}
