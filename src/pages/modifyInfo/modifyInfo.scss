@@ -1,0 +1,28 @@
+.at-tabs .at-tabs__header {
+  height: 100px;
+  background: #10AEFF;
+  line-height: 50px;
+  padding: 0 20px;
+}
+.at-tabs__header .at-tabs__item {
+  color: #ffffff;
+}
+.at-tabs__item--active {
+  border-bottom: 4px solid #ffffff;
+}
+page {
+  background: #F2F2F2;
+}
+.info-container {
+  background: #F2F2F2;
+}
+.info-saveBtn {
+  position: fixed;
+  bottom: 16px;
+  width: 710px;
+  background: #10AEFF;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px 0px rgba(204,204,204,1);
+  left: 20px;
+  color: #ffffff;
+}

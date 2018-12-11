@@ -1,0 +1,139 @@
+Button {
+  padding: 0;
+}
+Input {
+  min-height: 40px;
+}
+.sales-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sales-batchEdit {
+  position: absolute;
+  top: 0;
+  height: 169px;
+  background: #FFFFFF;
+  width: 750px;
+  box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+  z-index: 10;
+}
+.sales-batchTitle {
+  margin: 20px 0 20px 50px;
+  font-size: 32px;
+}
+.sales-editNumber {
+  margin-left: 54px;
+  margin-right: 40px;
+  display: flex;
+  height: 64px;
+  justify-content: space-between;
+  align-items: center;
+}
+.sales-numberInput {
+  width: 192px;
+  height: 62px;
+  background: #FFFFFF;
+  border: 1px solid #999999;
+  border-radius: 10px;
+  padding-left: 32px;
+}
+.sales-fillPrice {
+  width: 165px;
+  height: 64px;
+  border: 1px solid #10AEFF;
+  background: #FFFFFF;
+  border-radius: 10px;
+  color: #10AEFF;
+  line-height: 64px;
+  font-size: 32px;
+  margin-left: 50px;
+}
+.sales-fillStock {
+  width: 165px;
+  height: 64px;
+  border: 1px solid #10AEFF;
+  background: #FFFFFF;
+  border-radius: 10px;
+  color: #10AEFF;
+  line-height: 64px;
+  font-size: 32px;
+}
+.sales-skuContainer {
+  width: 710px;
+  margin: 20px auto;
+  padding-bottom: 16px; 
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+}
+.sales-skuInfo {
+  overflow: auto;
+}
+.sales-fillFooter {
+  width: 750px;
+  height: 100px;
+}
+.sales-fillSpace {
+  width: 750px;
+  height: 169px;
+}
+.sales-salesTxt {
+  padding: 20px 0 8px 30px;
+  font-size: 32px;
+}
+.sales-dividingLine {
+  border-bottom: 1px solid rgba(229,229,229,1);
+  margin: 0 30px;
+}
+.sales-skuDisplay {
+  margin: 0 30px;
+}
+.sales-titleTxt {
+  margin: 17px 99px 14px 42px;
+  width: 549px;
+  padding-left: 10px;
+}
+.sales-titleInput {
+  margin: 17px 99px 14px 42px;
+  width: 549px;
+  padding-left: 10px;
+  border: 1px solid rgba(151,151,151,1);
+  border-radius: 10px;
+}
+.sales-priStock {
+  margin: 0 99px 22px 52px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  width: 552px;
+  line-height: 40px;
+}
+.sales-saleNumber {
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+}
+.sales-priceInput {
+  margin-left: 10px;
+  height: 40px;
+  width: 163px;
+  background: #FFFFFF;
+  border: 1px solid rgba(151,151,151,1);
+  border-radius: 10px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+.sales-stockInput {
+  margin-left: 10px;
+  height: 40px;
+  width: 128px;
+  background: #FFFFFF;
+  border: 1px solid rgba(151,151,151,1);
+  border-radius: 10px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
