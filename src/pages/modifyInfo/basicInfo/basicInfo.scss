@@ -1,0 +1,122 @@
+.basic-container {
+  background: #F2F2F2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.basic-modifyTitle {
+  width: 710px;
+  height: 215px;
+  margin: 20px 0;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+}
+.basic-modifyStatus {
+  width: 710px;
+  height: 163px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+  margin-bottom: 20px;
+}
+.basic-modifyPrice {
+  width: 710px;
+  height: 279px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+  margin-bottom: 20px;
+}
+.basic-itemTitle {
+  margin: 20px 0 20px 30px;
+  font-size: 32px;
+}
+.basic-titleInput {
+  width: 638px;
+  height: 100px;
+  background: #FFFFFF;
+  border: 1px solid rgba(151,151,151,1);
+  border-radius: 10px;
+  font-size: 34px;
+  margin-left: 30px;
+  padding: 12px 10px 0 10px;
+}
+.basic-itemStatus {
+  margin: 20px 0 27px 30px;
+  font-size: 32px;
+}
+.basic-statusDisplay {
+  margin: 0 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.basic-shelf {
+  font-size: 32px;
+  color: #10AEFF;
+  padding-left: 8px;
+}
+.basic-outItem {
+  font-size: 32px;
+  color: #FF0000;
+  padding-left: 8px;
+}
+.basic-soldOut {
+  width: 156px;
+  height: 51px;
+  background: #FFFFFF;
+  border: 1px solid #FF0000;
+  border-radius: 10px;
+  font-size: 24px;
+  color: #FF0000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.basic-shelfItem {
+  width: 156px;
+  height: 51px;
+  background: #FFFFFF;
+  border: 1px solid #10AEFF;
+  border-radius: 10px;
+  font-size: 24px;
+  color: #10AEFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+.basic-itemPrice {
+  margin: 20px 0 30px 30px;
+  font-size: 32px;
+}
+.basic-priceDisplay {
+  margin-left: 50px;
+  font-size: 28px;
+}
+.basic-saleTxt {
+  margin: 20px 0 20px 28px;
+}
+.basic-salePrice {
+  color: #FF4D4F;
+  margin-left: 12px;
+}
+.basic-showPrice {
+  margin-left: 12px;
+}
+.basic-markPrice {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+.basic-originalPrice {
+  width: 199px;
+  height: 44px;
+  background: #FFFFFF;
+  border: 1px solid rgba(151,151,151,1);
+  border-radius: 10px;
+  margin: 0 10px;
+  padding-left: 10px; 
+}

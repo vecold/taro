@@ -1,0 +1,173 @@
+.main-scroll {
+  overflow: auto;
+}
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-mainPic {
+  width: 710px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.main-mainTxt {
+  margin-top: 20px;
+  margin-left: 30px;
+  font-size: 32px;
+  line-height: 45px;
+}
+.main-mainImg {
+  margin-left: 25px;
+  margin-right: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-imgContain {
+  width: 150px;
+  height: 150px;
+  margin-top: 20px;
+  margin-right: 20px;
+  position: relative;
+}
+.main-eachImage {
+  width: 150px;
+  height: 150px;
+}
+.main-mainMask {
+  background: rgba(216,216,216,0.70);
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  top: 0;
+}
+.main-selectContain {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.main-notSelect {
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 29px;
+  height: 29px;
+  margin-top: 5px;
+  margin-left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(151,151,151,1);
+}
+.main-selected {
+  background: #10AEFF;
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-editTxt {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  line-height: 33px;
+  color: #10AEFF;
+}
+.main-prompt {
+  font-size: 24px;
+  line-height: 28px;
+  margin-top: 12px;
+  margin-left: 60px;
+  margin-bottom: 10px;
+}
+.main-detailPic {
+  width: 710px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 1px 4px 0px rgba(204,204,204,1);
+}
+.main-detailImg {
+  width: 650px;
+  margin-left: 30px;
+  height: auto;
+}
+.main-desImg {
+  width: 650px;
+  height: 282px;
+  background: #FFFFFF;
+  border: 1px solid rgba(151,151,151,1);
+  margin-top: 10px;
+  position: relative;
+}
+.main-desImage {
+  height: 280px;
+}
+.main-notImage {
+  width: 710px;
+  height: 140px;
+}
+.main-desMask {
+  width: 650px;
+  height: 282px;
+  background: rgba(51,51,51,0.60);
+  border: 1px solid rgba(151,151,151,1);
+  position: absolute;
+  top: 0;
+  z-index: 50;
+}
+.main-moveBtn {
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  z-index: 99;
+  display: flex;
+}
+.main-upBtn {
+  width: 112px;
+  height: 45px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #10AEFF;
+  color: #FFFFFF;
+  font-size: 28px;
+}
+.main-showBtn {
+  width: 112px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #10AEFF;
+  color: #FFFFFF;
+  font-size: 28px;
+}
+.main-moveUpward {
+ width: 28px;
+ height: 27px;
+ margin-right: 10px;
+}
+.main-moveHide {
+  width: 30px;
+  height: 24px;
+  margin-right: 10px;
+}
+.main-moveShow {
+  width: 30px;
+  height: 22px;
+  margin-right: 10px;
+}
