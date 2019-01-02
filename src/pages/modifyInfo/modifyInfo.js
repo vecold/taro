@@ -4,7 +4,8 @@ import { AtTabs, AtTabsPane } from 'taro-ui'
 import BasicInfo from './basicInfo/basicInfo.js'
 import SalesSpecification from './salesSpecification/salesSpecification.js'
 import MainPicture from './mainPicture/mainPicture.js'
-import { api, IsEmpty } from '../../public/utils/utils.js'
+import { IsEmpty } from '../../public/utils/utils.js'
+import { getDetail } from  '../../biz/modifyInfo.js';
 
 import './modifyInfo.scss'
 
@@ -41,17 +42,14 @@ class ModifyInfo extends Component {
   } // onLoad, options通过this.$router.params访问
 
   componentDidMount () { 
-    api({
-      url: '/wx/itemDetail',
-      params: {
-        num_iid: this.state.itemId
-      },
+    getDetail({
+      id: this.state.itemId,
       callback: (res) => {
         this.setState({
           itemDetail: res.data
         })
       }
-    }) 
+    })
   } // onReady
 
   componentDidShow () { 
@@ -130,22 +128,23 @@ class ModifyInfo extends Component {
                       newParams.skus = '';
                     } else {
                       if (!IsEmpty(newParams.skus)) {
-                        for (let i=0; i< newParams.skus.length; i++) {
+                        skuParam = newParams.skus;
+                        for (let i=0; i< skuParam.length; i++) {
                           for (let j=0; j< itemDetail.sku.length; j++) {
-                            if (newParams.skus[i].sku_id == itemDetail.sku[j].sku_product_id) {
-                              if (newParams.skus[i].sku_title == itemDetail.sku[j].prop_name) {
-                                newParams.skus[i].sku_title = '';
+                            if (skuParam[i].sku_id == itemDetail.sku[j].sku_product_id) {
+                              if (skuParam[i].sku_title == itemDetail.sku[j].prop_name) {
+                                skuParam[i].sku_title = '';
                               };
-                              if (newParams.skus[i].sku_list_price == itemDetail.sku[j].list_price) {
-                                newParams.skus[i].sku_list_price = '';
+                              if (skuParam[i].sku_list_price == itemDetail.sku[j].list_price) {
+                                skuParam[i].sku_list_price = '';
                               };
-                              if (newParams.skus[i].sku_inventory == itemDetail.sku[j].defect_num) {
-                                newParams.skus[i].sku_inventory = '';
+                              if (skuParam[i].sku_inventory == itemDetail.sku[j].defect_num) {
+                                skuParam[i].sku_inventory = '';
                               };
                             }
                           }
-                          if (newParams.skus[i].sku_title === '' && newParams.skus[i].sku_list_price === '' && newParams.skus[i].sku_inventory === '') {
-                            newParams.skus.splice(i, 1);
+                          if (skuParam[i].sku_title === '' && skuParam[i].sku_list_price === '' && skuParam[i].sku_inventory === '') {
+                            skuParam.splice(i, 1);
                             i--;
                           }
                         };
@@ -160,8 +159,8 @@ class ModifyInfo extends Component {
                   list_price: newParams.list_price,
                   inventory: newParams.inventory
                 }
-                if (!IsEmpty(newParams.skus)) {
-                  params.skus = JSON.stringify(newParams.skus);
+                if (!IsEmpty(skuParam)) {
+                  params.skus = JSON.stringify(skuParam);
                 };
                 if (!IsEmpty(newParams.show_mainimg)) {
                   params.show_mainimg = JSON.stringify(newParams.show_mainimg);
